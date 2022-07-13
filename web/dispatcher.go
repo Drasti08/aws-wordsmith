@@ -13,7 +13,7 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	fwd := &forwarder{"words", 8080}
+	fwd := &forwarder{"internal-app-elb-861956166.us-east-1.elb.amazonaws.com", 8080}
 	http.Handle("/words/", http.StripPrefix("internal-app-elb-861956166.us-east-1.elb.amazonaws.com", fwd))
 	http.Handle("/", http.FileServer(http.Dir("static")))
 

@@ -14,7 +14,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	fwd := &forwarder{"internal-app-elb-861956166.us-east-1.elb.amazonaws.com", 8080}
-	http.Handle("/words/", http.StripPrefix("internal-app-elb-861956166.us-east-1.elb.amazonaws.com", fwd))
+	http.Handle("/words/", http.StripPrefix("/words", fwd))
 	http.Handle("/", http.FileServer(http.Dir("static")))
 
 	fmt.Println("Listening on port 80")
